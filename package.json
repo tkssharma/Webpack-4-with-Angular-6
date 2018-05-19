@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts" : {
+    "dev" : "webpack"
+  },
   "devDependencies": {
-    "ts-loader": "^4.0.1",
-    "typescript": "^2.7.2",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10"
   }
