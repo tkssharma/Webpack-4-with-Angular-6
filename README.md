@@ -1,4 +1,5 @@
-# Webpack 4 Tutorial
+# Webpack 4 with Angular 6
+# Packt Publishing 
 
 coming .. soon
 
