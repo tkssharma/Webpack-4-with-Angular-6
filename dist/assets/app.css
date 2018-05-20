@@ -1,0 +1,71 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+}
+app-root {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+app-root .content {
+  margin: 0;
+  padding: 16px;
+  height: 100%;
+  display: block;
+}
+app-root .content h1 {
+  color: darkslateblue;
+}
+footer-component {
+  display: flex;
+  width: 100%;
+  flex-flow: column nowrap;
+  flex-grow: 0;
+  background-color: #3a3f44;
+  color: #eeeee8;
+}
+footer-component .footer-content {
+  height: 80px;
+  min-height: 80px;
+  max-height: 80px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-items: center;
+}
+footer-component .footer-content .footer-text {
+  margin: 0 16px;
+  font-size: .8rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+footer-component .footer-content .vendor-logo {
+  padding: 8px;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  display: inline-flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  fill: #67cde5 !important;
+  transition: all ease .2s;
+}
+footer-component .footer-content .vendor-logo:hover {
+  fill: #f4dc1e !important;
+}

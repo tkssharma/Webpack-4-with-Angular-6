@@ -1,5 +1,5 @@
 {
-  "name": "aot-test",
+  "name": "angular",
   "description": "AOT Angular 5 test project",
   "repository": "local",
   "license": "CC-BY-NC-4.0",
@@ -7,8 +7,7 @@
     "clean": "rimraf ./dist",
     "build": "npm run clean && webpack --config build/webpack.config.prod.ts --mode production",
     "dev": "npm run clean && webpack --config build/webpack.config.dev.ts --mode development",
-    "watch": "webpack --config build/webpack.config.dev.ts --mode development --watch",
-    "start": "npm run clean && concurrently --kill-others \"npm run watch\" \"live-server dist\""
+    "watch": "webpack --config build/webpack.config.dev.ts --mode development --watch"
   },
   "dependencies": {
     "@angular/common": "^5.2.5",
