@@ -1,5 +1,7 @@
 const webpack = require("webpack");
 const ngcWebpack = require("ngc-webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var path = require("path");
 
@@ -46,6 +48,16 @@ module.exports = function(env, argv) {
           test: /\.ts$/,
           exclude: /node_modules/,
           use: "@ngtools/webpack"
+        },
+        // Templates
+        {
+          test: /\.html$/,
+          exclude: getRoot("src", "index.html"),
+          use: [
+            {
+              loader: "raw-loader"
+            }
+          ]
         }
       ]
     },
@@ -53,7 +65,23 @@ module.exports = function(env, argv) {
       new ngcWebpack.NgcWebpackPlugin({
         tsConfigPath: "./tsconfig.json",
         mainPath: "./src/main.ts"
-      })
+      }),
+
+      new MiniCssExtractPlugin({
+        filename: "app.css"
+      }),
+
+      new CopyWebpackPlugin([
+        {
+          from: getRoot("src", "index.html"), to: getRoot("dist", "index.html")
+        },
+        { 
+          from: getRoot("src", "assets"), to: getRoot("dist", "assets") 
+        }
+       
+      ]),
+
+      
     ]
   };
 };
