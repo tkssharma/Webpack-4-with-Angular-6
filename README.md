@@ -1,10 +1,16 @@
-angular6-webpack4-quickstart
-=============================
-Angular 6 with Webpack 4 builder quickstart
+AOT Test
+===
+Includes:
+* Webpack 4
+* TypeScript (config and builder scripts)
+* TypeScript project
+* Angular 5 boilerplate application
 
+Installation
+--
+`npm install`, then `npm run build` or `npm run dev` or `npm run watch`.
 
-## Getting Started
+Live Server is also available:
+`npm install -g live-server`, then `npm run start`
 
- 1. Clone repo
- 2. npm install
- 3. npm serve
+Enjoy!

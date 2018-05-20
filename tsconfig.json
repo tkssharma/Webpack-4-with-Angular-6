@@ -21,9 +21,12 @@
 		],
 		"types": [
 			"node",
+			"core-js",
+			"rx",
+			"webpack"
 		]
 	},
 	"exclude": [
-    "node_modules/*",
+		"dist"
 	]
 }

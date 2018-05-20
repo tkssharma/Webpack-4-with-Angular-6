@@ -1,27 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {AngularSvgIconModule} from 'angular-svg-icon';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import {AppRootComponent} from './root-component/app-root.component';
+import {FooterComponent} from './footer-component/footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [AppRootComponent, FooterComponent],
+	imports: [BrowserModule, HttpClientModule, AngularSvgIconModule],
+	bootstrap: [AppRootComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
