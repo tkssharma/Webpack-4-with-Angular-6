@@ -58,6 +58,17 @@ module.exports = function(env, argv) {
               loader: "raw-loader"
             }
           ]
+        },
+        {
+          test: /\.scss$/,
+          include: getRoot("src", "app"),
+          use: ["raw-loader", "sass-loader"]
+        },
+
+        {
+          test: /\.scss$/,
+          exclude: getRoot("src", "app"),
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
         }
       ]
     },
