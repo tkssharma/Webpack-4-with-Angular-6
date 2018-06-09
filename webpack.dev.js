@@ -62,33 +62,11 @@ module.exports = webpackMerge(commonConfig, {
             }
         ]
     },
-
-    optimization: {
-        // see https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693
-        splitChunks: {
-            chunks: "async",
-            minSize: 30000,
-            minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            name: true,
-            cacheGroups: {
-                default: false,
-                vendor: {
-                    name: "vendor",
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10,
-                    enforce: true
-                }
-            }
-        },
-        minimize: false
-    },
     plugins: [
 
         new AngularCompilerPlugin({
             mainPath: "./src/main.ts",
-            tsConfigPath: "./tsconfig.app.json",
+            tsConfigPath: "./tsconfig.json",
             skipCodeGeneration: false
         }),
 

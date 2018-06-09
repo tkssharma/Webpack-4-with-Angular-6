@@ -18,7 +18,6 @@ module.exports = webpackMerge(commonConfig, {
     devtool: 'source-map',
     mode: "production", // mode: "development" || "production",
 
-
     entry: {
         'polyfills': './src/polyfills.ts',
         'main': ['./src/main.ts', './src/styles/app.css']
@@ -35,25 +34,23 @@ module.exports = webpackMerge(commonConfig, {
             {
                 "test": /\.(eot|svg)$/,
                 "loader": "file-loader?name=assets/[name].[hash:20].[ext]"
-            },
-            {
+            }, {
                 "test": /\.(jpg|png|gif|otf|ttf|woff|woff2|cur|ani)$/,
                 "loader": "url-loader?name=assets/[name].[hash:20].[ext]&limit=8192"
-            },
-            {
+            }, {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: 'css-loader'
-                }),
+                loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'}),
                 include: [root('src', 'styles')]
-            },
-
-            {
+            }, {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
+            }, {
                 test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
                 loader: '@ngtools/webpack'
-            },
-            {
+            }, {
                 test: /\.js$/,
                 loader: '@angular-devkit/build-optimizer/webpack-loader',
                 options: {
@@ -65,17 +62,14 @@ module.exports = webpackMerge(commonConfig, {
     },
     plugins: [
 
-        new AngularCompilerPlugin({
-            "mainPath": "src/main.ts",
-            "tsConfigPath": "tsconfig.app.json"
-        }),
+        new AngularCompilerPlugin({"mainPath": "src/main.ts", "tsConfigPath": "tsconfig.json"}),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             chunksSortMode: function (a, b) {
                 var order = ["polyfills", "vendor", "main"];
                 return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
             },
-           // excludeChunks: lazyChunks,
+            // excludeChunks: lazyChunks,
             xhtml: true,
             minify: {
                 caseSensitive: true,
@@ -115,6 +109,11 @@ module.exports = webpackMerge(commonConfig, {
 
 // Helper functions
 function root(args) {
-    args = Array.prototype.slice.call(arguments, 0);
-    return path.join.apply(path, [__dirname].concat(args));
+    args = Array
+        .prototype
+        .slice
+        .call(arguments, 0);
+    return path
+        .join
+        .apply(path, [__dirname].concat(args));
 }

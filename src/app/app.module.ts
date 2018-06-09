@@ -1,20 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Injectable, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
+
 import { AppComponent } from './app.component';
-import { Routes, RouterModule } from '@angular/router';
-
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { AppRoutingModule } from './app-routing.module';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
+import { AboutDetailsComponent }  from './about/about-details.component';
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        HttpClientModule
-    ],
-    bootstrap: [AppComponent]
+declarations: [ AppComponent, AboutComponent, ContactComponent, HomeComponent, AboutDetailsComponent ],
+  imports: [ BrowserModule, AppRoutingModule ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+
+export class AppModule {}

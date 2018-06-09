@@ -1,3 +1,3 @@
 export const environment = {
-  platform: 'PROD'
+  production: true
 };

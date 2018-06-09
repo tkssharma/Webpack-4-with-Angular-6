@@ -5,8 +5,8 @@
   "scripts": {
     "clean": "rimraf doc dist coverage",
     "start": "webpack-dev-server --config webpack.dev.js --inline --progress --profile --port 8080",
-    "build": "npm run clean && webpack --progress --profile --bail --config webpack.dev.js --mode development",
-    "build:prod": "npm run clean && webpack --progress --profile --bail --config webpack.release.js --mode production",    
+    "build": "npm run clean && webpack --progress --profile --bail --config webpack.dev.js",
+    "build:prod": "npm run clean && webpack --progress --profile --bail --config webpack.release.js --mode production",
     "lint": "tslint --force \"src/**/*.ts\"",
     "docs": "typedoc --options typedoc.json src/app/app.component.ts"
   },
