@@ -63,6 +63,8 @@ module.exports = function makeWebpackConfig() {
 
         new CopyWebpackPlugin([{
             from: 'src/assets', to: 'assets'
+        }, {
+            from: 'src/images', to: 'assets'
         }], {
             'ignore': [
                 '.gitkeep'

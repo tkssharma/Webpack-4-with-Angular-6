@@ -1,3 +1,11 @@
 h1 {
     font-size: 30px;
 }
+
+.settingIcon{
+    background-image:url('../images/angular.jpg');
+    background-repeat:no-repeat;
+    height:250px;
+    width:450px;
+    display:inline-block;
+}
