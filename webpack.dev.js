@@ -79,7 +79,7 @@ module.exports = webpackMerge(commonConfig, {
                 return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
             }
         }),
-        // new FilePlugin(),
+        new FilePlugin(),
         new ExtractTextPlugin({filename: '[name].[hash].css'}),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
