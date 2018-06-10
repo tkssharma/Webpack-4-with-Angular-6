@@ -2,7 +2,8 @@ const commonConfig = require('./webpack.common.js');
 const webpackMerge = require('webpack-merge');
 const Visualizer = require('webpack-visualizer-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+const webpack = require('webpack');
+const FilePlugin = require('./src/plugin');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -13,10 +14,10 @@ const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 
 module.exports = webpackMerge(commonConfig, {
 
-    devtool: 'cheap-module-source-map',    
+    devtool: 'inline-source-map',
     entry: {
         'polyfills': './src/polyfills.ts',
-        'main': ['./src/main.ts', './src/styles/app.css']
+        'main': ['./src/main.ts', './src/styles/app.css','webpack-hot-middleware/client', 'webpack/hot/dev-server']
     },
 
     output: {
@@ -24,7 +25,6 @@ module.exports = webpackMerge(commonConfig, {
         filename: 'js/[name].bundle.js',
         chunkFilename: 'js/[id].chunk.js'
     },
-
 
     module: {
         rules: [
@@ -40,10 +40,9 @@ module.exports = webpackMerge(commonConfig, {
                         }
                     }
                 ]
-            },
-            {
-                 test: /\.(jpg|png|gif|otf|ttf|woff|woff2|cur|ani)$/,
-                 use: [
+            }, {
+                test: /\.(jpg|png|gif|otf|ttf|woff|woff2|cur|ani)$/,
+                use: [
                     {
                         loader: 'url-loader',
                         options: {
@@ -52,8 +51,7 @@ module.exports = webpackMerge(commonConfig, {
                         }
                     }
                 ]
-            },
-            {
+            }, {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'}),
                 include: [root('src', 'styles')]
@@ -63,9 +61,7 @@ module.exports = webpackMerge(commonConfig, {
                     fallback: 'style-loader',
                     use: ['css-loader', 'sass-loader']
                 })
-            },
-
-            {
+            }, {
                 test: /\.ts$/,
                 loaders: ['@ngtools/webpack']
             }
@@ -74,14 +70,8 @@ module.exports = webpackMerge(commonConfig, {
     plugins: [
         new UglifyJsPlugin(),
         new BundleAnalyzerPlugin(),
-        new Visualizer({
-            filename: './statistics.html'
-        }),
-        new AngularCompilerPlugin({
-            mainPath: "./src/main.ts",
-            tsConfigPath: "./tsconfig.json",
-            skipCodeGeneration: false
-        }),
+        new Visualizer({filename: './statistics.html'}),
+        new AngularCompilerPlugin({mainPath: "./src/main.ts", tsConfigPath: "./tsconfig.json", skipCodeGeneration: false}),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             chunksSortMode: function (a, b) {
@@ -89,8 +79,11 @@ module.exports = webpackMerge(commonConfig, {
                 return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
             }
         }),
-     new ExtractTextPlugin({filename: '[name].[hash].css'})
-        
+        // new FilePlugin(),
+        new ExtractTextPlugin({filename: '[name].[hash].css'}),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
+
     ],
 
     /**
@@ -100,7 +93,10 @@ module.exports = webpackMerge(commonConfig, {
      */
     devServer: {
         historyApiFallback: true,
-        watchOptions: {aggregateTimeout: 300, poll: 1000},
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
+        },
         open: true,
         overlay: true,
         stats: {
@@ -119,7 +115,6 @@ module.exports = webpackMerge(commonConfig, {
         } // none (or false), errors-only, minimal, normal (or true) and verbose
     },
 
-
     node: {
         global: true,
         crypto: 'empty',
@@ -132,6 +127,11 @@ module.exports = webpackMerge(commonConfig, {
 
 // Helper functions
 function root(args) {
-    args = Array.prototype.slice.call(arguments, 0);
-    return path.join.apply(path, [__dirname].concat(args));
+    args = Array
+        .prototype
+        .slice
+        .call(arguments, 0);
+    return path
+        .join
+        .apply(path, [__dirname].concat(args));
 }
