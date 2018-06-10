@@ -77,16 +77,11 @@ module.exports = webpackMerge(commonConfig, {
         new Visualizer({
             filename: './statistics.html'
         }),
-
         new AngularCompilerPlugin({
             mainPath: "./src/main.ts",
             tsConfigPath: "./tsconfig.json",
             skipCodeGeneration: false
         }),
-
-
-        // Inject script and link tags into html files
-        // Reference: https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
             template: './src/index.html',
             chunksSortMode: function (a, b) {
