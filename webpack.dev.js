@@ -1,5 +1,7 @@
 const commonConfig = require('./webpack.common.js');
 const webpackMerge = require('webpack-merge');
+const Visualizer = require('webpack-visualizer-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -11,8 +13,7 @@ const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 
 module.exports = webpackMerge(commonConfig, {
 
-    devtool: 'cheap-module-source-map',
-
+    devtool: 'cheap-module-source-map',    
     entry: {
         'polyfills': './src/polyfills.ts',
         'main': ['./src/main.ts', './src/styles/app.css']
@@ -72,6 +73,10 @@ module.exports = webpackMerge(commonConfig, {
     },
     plugins: [
         new UglifyJsPlugin(),
+        new BundleAnalyzerPlugin(),
+        new Visualizer({
+            filename: './statistics.html'
+        }),
 
         new AngularCompilerPlugin({
             mainPath: "./src/main.ts",
