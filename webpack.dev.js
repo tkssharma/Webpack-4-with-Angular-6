@@ -73,7 +73,6 @@ module.exports = webpackMerge(commonConfig, {
         ]
     },
     plugins: [
-        new UglifyJsPlugin(),
         new BundleAnalyzerPlugin(),
         new Visualizer({ filename: './statistics.html' }),
         new AngularCompilerPlugin({ mainPath: "./src/main.ts", tsConfigPath: "./tsconfig.json", skipCodeGeneration: false }),
