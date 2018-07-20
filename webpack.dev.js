@@ -17,7 +17,7 @@ module.exports = webpackMerge(commonConfig, {
     devtool: 'inline-source-map',
     entry: {
         'polyfills': './src/polyfills.ts',
-        'main': ['./src/main.ts', './src/styles/app.css','webpack-hot-middleware/client', 'webpack/hot/dev-server']
+        'main': ['./src/main.ts', './src/styles/app.css', 'webpack-hot-middleware/client', 'webpack/hot/dev-server']
     },
 
     output: {
@@ -25,7 +25,12 @@ module.exports = webpackMerge(commonConfig, {
         filename: 'js/[name].bundle.js',
         chunkFilename: 'js/[id].chunk.js'
     },
-
+    optimization: {
+        minimize: true,
+        minimizer: [new UglifyJsPlugin({
+            include: /\.min\.js$/
+        })]
+    },
     module: {
         rules: [
 
@@ -53,7 +58,7 @@ module.exports = webpackMerge(commonConfig, {
                 ]
             }, {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'}),
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }),
                 include: [root('src', 'styles')]
             }, {
                 test: /\.scss$/,
@@ -70,8 +75,8 @@ module.exports = webpackMerge(commonConfig, {
     plugins: [
         new UglifyJsPlugin(),
         new BundleAnalyzerPlugin(),
-        new Visualizer({filename: './statistics.html'}),
-        new AngularCompilerPlugin({mainPath: "./src/main.ts", tsConfigPath: "./tsconfig.json", skipCodeGeneration: false}),
+        new Visualizer({ filename: './statistics.html' }),
+        new AngularCompilerPlugin({ mainPath: "./src/main.ts", tsConfigPath: "./tsconfig.json", skipCodeGeneration: false }),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             chunksSortMode: function (a, b) {
@@ -80,7 +85,7 @@ module.exports = webpackMerge(commonConfig, {
             }
         }),
         new FilePlugin(),
-        new ExtractTextPlugin({filename: '[name].[hash].css'}),
+        new ExtractTextPlugin({ filename: '[name].[hash].css' }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
 
