@@ -1,27 +1,33 @@
-# Angular5
+# Webpack 4 Boilerplate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
+> Webpack 4 boilerplate with Babel, Bootstrap 4, jQuery and SCSS on board
 
-## Development server
+## Download
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Download in current directory
 
-## Code scaffolding
+```sh
+$ curl -L -o master.zip https://github.com/hardwit/webpack-boilerplate/archive/master.zip && unzip master.zip && rm master.zip && mv ./webpack-boilerplate-master/* ./ && rm -rf ./webpack-boilerplate-master
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Setup
 
-## Build
+Install dependencies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```sh
+$ npm install
+```
 
-## Running unit tests
+## Scripts
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Run the local webpack-dev-server with livereload and autocompile on [http://localhost:8080/](http://localhost:8080/)
 
-## Running end-to-end tests
+```sh
+$ npm run dev
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+#### Build the current application for deployment
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```sh
+$ npm run build
+```
