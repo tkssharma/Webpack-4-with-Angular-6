@@ -7,6 +7,8 @@ const FilePlugin = require('./src/plugin');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// progress bar plugin
+var ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 // Webpack Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -14,7 +16,7 @@ const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 
 module.exports = webpackMerge(commonConfig, {
 
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     entry: {
         'polyfills': './src/polyfills.ts',
         'main': ['./src/main.ts', './src/styles/app.css','webpack-hot-middleware/client', 'webpack/hot/dev-server']
@@ -25,7 +27,11 @@ module.exports = webpackMerge(commonConfig, {
         filename: 'js/[name].bundle.js',
         chunkFilename: 'js/[id].chunk.js'
     },
-
+    optimization: {
+        minimizer: [
+          new UglifyJsPlugin()
+        ]
+    },
     module: {
         rules: [
 
@@ -70,6 +76,7 @@ module.exports = webpackMerge(commonConfig, {
     plugins: [
         new UglifyJsPlugin(),
         new BundleAnalyzerPlugin(),
+        new ProgressBarPlugin(),        
         new Visualizer({filename: './statistics.html'}),
         new AngularCompilerPlugin({mainPath: "./src/main.ts", tsConfigPath: "./tsconfig.json", skipCodeGeneration: false}),
         new HtmlWebpackPlugin({
