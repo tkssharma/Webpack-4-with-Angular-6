@@ -4,12 +4,12 @@ import './styles/main.scss';
 function component() {
     var element = document.createElement('div');
     element.innerHTML = "Hello world!";
-
     var logo = new Image();
     logo.src = webpacklogo;
     element.appendChild(logo);
-
     return element;
 }
+module.hot.accept();
+
 
 document.body.appendChild(component());

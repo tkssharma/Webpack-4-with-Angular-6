@@ -14,6 +14,7 @@ app.use(wpmw);
 const wphmw = webpackHotMiddleware(webpackCompiler);
 app.use(wphmw);
 
-app.listen(3000, () => {
+var server = app.listen(3000, () => {
+  server.keepAliveTimeout = 12000;  
   console.log('Example app listening on port 3000!')
 });
