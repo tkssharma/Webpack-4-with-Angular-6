@@ -9,6 +9,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // progress bar plugin
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin")
 
 // Webpack Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -74,7 +75,6 @@ module.exports = webpackMerge(commonConfig, {
         ]
     },
     plugins: [
-        new UglifyJsPlugin(),
         new BundleAnalyzerPlugin(),
         new ProgressBarPlugin(),        
         new Visualizer({filename: './statistics.html'}),
@@ -89,7 +89,10 @@ module.exports = webpackMerge(commonConfig, {
         new FilePlugin(),
         new ExtractTextPlugin({filename: '[name].[hash].css'}),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new CompressionPlugin({
+            algorithm: 'gzip'
+        })
 
     ],
 
