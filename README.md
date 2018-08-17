@@ -1,9 +1,13 @@
 # Angular 6 with Weboack 4
+
 ![image](https://cdn.joinhoney.com/images/lp/store-logos/packt-publishing-ca-logo.png)
+
 **KEY FEATURES**
+
 - Elevate your Angular experience to an advanced level and build your first application in Angular 6.0.
 - Utilise the benefits of Using Webpack with Angular for bundling and compiling code
 - Make the best use of the Webpack using hot reloading.
+
 ### **APPROACH**
 
 In this course we are going to gain full understanding of webpack 4.0 and how webpack works with  Angular application development .
