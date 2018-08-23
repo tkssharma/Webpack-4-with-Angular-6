@@ -4,7 +4,7 @@ const webpackMerge = require('webpack-merge');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const AotPlugin = require('@ngtools/webpack').AotPlugin;
 // Webpack Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
@@ -78,8 +78,10 @@ module.exports = webpackMerge(commonConfig, {
             tsConfigPath: "./tsconfig.json",
             skipCodeGeneration: false
         }),
-
-
+        new AotPlugin({
+                tsConfigPath: './tsconfig.json',
+                entryModule: 'src/app/app.module#AppModule'
+        }),
         // Inject script and link tags into html files
         // Reference: https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
