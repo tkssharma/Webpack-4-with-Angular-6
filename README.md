@@ -1,4 +1,4 @@
-# Angular 6 with Weboack 4
+# Angular 6 with Webpack 4
 
 ![image](https://cdn.joinhoney.com/images/lp/store-logos/packt-publishing-ca-logo.png)
 
